@@ -27,7 +27,7 @@ export default class Game extends React.Component {
         <Typography align="center" className="balance">Your Balance $MANST Coins</Typography>
         <Typography align="center" className="balance">{this.state.balance}</Typography>
         
-        <Box className="circle">
+        <Box className="circle" textAlign="center" mt={2}>
           <img src="/images/main-icon.png" alt="Main Icon" className="icon-image" />
         </Box>
         
@@ -75,7 +75,7 @@ export default class Game extends React.Component {
             </Paper>
           </Grid>
           <Grid item xs={3}>
-            <Paper className="menuItem">
+            <Paper className="menuItem"  >
               <img src="/images/vouchers-icon.png" alt="Vouchers" className="icon-image" />
               <Typography>Vouchers</Typography>
             </Paper>
