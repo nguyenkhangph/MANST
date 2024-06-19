@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    width: 100vw;
+    height: var(--tg-viewport-stable-height, 100vh);
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    transition: height ease-out 250ms;
+}
