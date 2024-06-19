@@ -34,7 +34,7 @@ export default class Game extends React.Component {
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} sm={6}>
             <Paper className="menuItem">
-              <Typography>Mining</Typography>
+              <Typography>Farm</Typography>
               <Typography>{this.state.farm}</Typography>
             </Paper>
           </Grid>
@@ -59,13 +59,13 @@ export default class Game extends React.Component {
           <Grid item xs={3}>
             <Paper className="menuItem">
               <img src="/images/farming-icon.png" alt="Farming" className="icon-image" />
-              <Typography>Mining</Typography>
+              <Typography>Farming</Typography>
             </Paper>
           </Grid>
           <Grid item xs={3}>
             <Paper className="menuItem">
               <img src="/images/friends-icon.png" alt="Friends" className="icon-image" />
-              <Typography>Invite Friends</Typography>
+              <Typography>Friends</Typography>
             </Paper>
           </Grid>
           <Grid item xs={3}>
