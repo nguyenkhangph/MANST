@@ -14,6 +14,8 @@ bot.onText(/\/start/, (msg) => {
 });
 
 // Add more bot logic here
+const web_link = "https://manst-ggsmf17cp-nguyenkhangphs-projects.vercel.app/";
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
