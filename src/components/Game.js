@@ -25,7 +25,7 @@ export default class Game extends React.Component {
     return (
       <div className="page-container">
         <Typography variant="h4" align="center" style={{ color: 'white' }}>Mondians TAP</Typography>
-        <Typography align="center" className="balance">Your Balance MMPro Points</Typography>
+        <Typography align="center" className="balance">Your Balance $MANST Coins</Typography>
         <Typography align="center" className="balance">{this.state.balance}</Typography>
         
         <Box className="circle">
