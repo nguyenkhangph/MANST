@@ -56,10 +56,10 @@ export default class Game extends React.Component {
           />
         </Box>
 
-        <Box textAlign="center" mt={2}>
+        <Box textAlign="center" mt={2} className="luckySpinButton">
           <Link href="/lucky-spin" legacyBehavior>
-            <a className="luckySpinButton">
-              <button>Lucky Spin</button>
+            <a>
+              <img src="/images/spin-button.png" alt="Lucky Spin" className="tap-image" />
             </a>
           </Link>
         </Box>
