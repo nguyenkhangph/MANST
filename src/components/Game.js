@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, Grid, Paper } from '@mui/material';
+import Link from 'next/link';
 import '../styles/Game.module.css';
 
 export default class Game extends React.Component {
@@ -22,12 +23,12 @@ export default class Game extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="page-container">
         <Typography variant="h4" align="center" style={{ color: 'white' }}>Mondians TAP</Typography>
-        <Typography align="center" className="balance">Your Balance $MANST Coins</Typography>
+        <Typography align="center" className="balance">Your Balance MMPro Points</Typography>
         <Typography align="center" className="balance">{this.state.balance}</Typography>
         
-        <Box className="circle" textAlign="center" mt={2}>
+        <Box className="circle">
           <img src="/images/main-icon.png" alt="Main Icon" className="icon-image" />
         </Box>
         
@@ -54,6 +55,14 @@ export default class Game extends React.Component {
             onClick={() => this.handleTap()}
           />
         </Box>
+
+        <Box textAlign="center" mt={2}>
+          <Link href="/lucky-spin" legacyBehavior>
+            <a className="luckySpinButton">
+              <button>Lucky Spin</button>
+            </a>
+          </Link>
+        </Box>
         
         <Grid container spacing={2} className="menu">
           <Grid item xs={3}>
@@ -75,7 +84,7 @@ export default class Game extends React.Component {
             </Paper>
           </Grid>
           <Grid item xs={3}>
-            <Paper className="menuItem"  >
+            <Paper className="menuItem">
               <img src="/images/vouchers-icon.png" alt="Vouchers" className="icon-image" />
               <Typography>Vouchers</Typography>
             </Paper>
