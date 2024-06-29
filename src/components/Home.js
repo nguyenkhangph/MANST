@@ -37,18 +37,26 @@ const Home = () => {
                 className={`${styles.button} ${buttonClicked ? styles.buttonClicked : ''}`} 
                 onClick={handleButtonClick}
               >
+                <Image src="/images/farming-icon.png" alt="Mining Icon" width={24} height={24} />
                 Mining
               </button>
             </a>
           </Link>
-          <button className={styles.button}>About Us</button>
-          <button className={styles.button}>Invite Friend</button>
+          <button className={styles.button}>
+            <Image src="/images/tasks-icon.png" alt="About Us Icon" width={24} height={24} />
+            About Us
+          </button>
+          <button className={styles.button}>
+            <Image src="/images/friends-icon.png" alt="Invite Friend Icon" width={24} height={24} />
+            Invite Friend
+          </button>
           <Link href="/lucky-spin" legacyBehavior>
             <a className={styles.buttonLink}>
               <button 
                 className={`${styles.button} ${buttonClicked ? styles.buttonClicked : ''}`} 
                 onClick={handleButtonClick}
               >
+                <Image src="/images/spin-icon.png" alt="Spin Icon" width={24} height={24} />
                 Spin
               </button>
             </a>
