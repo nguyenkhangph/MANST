@@ -194,15 +194,15 @@
 
 .button {
     padding: 15px 30px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        margin-bottom: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.3s;
-        background: #fff;
-        color: #333;
-        border: 1px solid #ddd;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ddd;
 }
 
 .button:hover {
@@ -223,8 +223,8 @@
 
 .backButton {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     background: none;
     border: none;
     font-size: 2rem;
