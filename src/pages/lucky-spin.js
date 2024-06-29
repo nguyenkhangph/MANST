@@ -1,49 +1,43 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
-import '../styles/LuckySpin.module.css';
+import styles from '../styles/LuckySpin.module.css';
 
 const LuckySpin = () => {
-  const [spinning, setSpinning] = useState(false);
-  const [coins, setCoins] = useState(0);
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [spinResult, setSpinResult] = useState(null);
+
+  const prizes = ["$MANST 0.01", "$MANST 0.05", "$MANST 0.10", "$MANST 1.00", "$MANST 40", "$MANST 250", "$$MANST 5", "$$MANST 10"];
 
   const handleSpin = () => {
-    if (spinning) return; // Prevents multiple clicks
-    setSpinning(true);
-    console.log('Spin started');
-    setTimeout(() => {
-      setSpinning(false);
-      const earnedCoins = Math.floor(Math.random() * 100); // Random coins
-      setCoins(coins + earnedCoins);
-      alert(`You earned ${earnedCoins} coins!`);
-      console.log('Spin ended');
-    }, 2000); // Spin duration
+    if (!isSpinning) {
+      setIsSpinning(true);
+      const result = Math.floor(Math.random() * prizes.length);
+      setTimeout(() => {
+        setSpinResult(prizes[result]);
+        setIsSpinning(false);
+      }, 3000); // Spinning animation duration
+    }
   };
 
   return (
-    <div className="page-container">
+    <div className={styles.container}>
       <Link href="/" legacyBehavior>
-        <a className="back-button">
-          <button>Back</button>
+        <a className={styles.buttonLink}>
+          <button className={styles.backButton}>&lt;</button>
         </a>
       </Link>
-      <Typography variant="h4" style={{ color: 'white' }}>Lucky Spin</Typography>
-      <Typography style={{ color: 'white', margin: '20px 0' }}>Earn Coins: {coins}</Typography>
-      <Box className="spin-circle">
-        <img 
-          src="/images/spin-icon.png" 
-          alt="Spin" 
-          className={`spin-image ${spinning ? 'spinning' : ''}`} 
-          onLoad={() => console.log('Image loaded')}
-        />
-      </Box>
-      <Box className="spin-button" onClick={handleSpin}>
-        <img 
-          src="/images/spin-button.png" 
-          alt="Spin Button" 
-          onClick={() => console.log('Spin button clicked')} 
-        />
-      </Box>
+      <h1 className={styles.title}>Let's Spin</h1>
+      <p className={styles.subtitle}>Spin to win real prize money</p>
+      <div className={styles.wheelContainer}>
+        <div className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}>
+          <img src="/images/spin-icon.png" alt="Spin Wheel" className={styles.spinWheel} />
+        </div>
+        <div className={styles.indicator}></div>
+      </div>
+      <button className={styles.spinButton} onClick={handleSpin}>
+        {isSpinning ? "Spinning..." : "Spin for $MANST 100"}
+      </button>
+      {spinResult && <p className={styles.result}>You won {spinResult}!</p>}
     </div>
   );
 };

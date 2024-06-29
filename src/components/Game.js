@@ -1,95 +1,98 @@
 import React from 'react';
-import { Box, Typography, Grid, Paper } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import Link from 'next/link';
-import '../styles/Game.module.css';
+import styles from '../styles/Game.module.css';
 
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      balance: 50400000,
-      farm: 204400,
-      taps: 107,
+      balance: 0.08,
+      miningValue: 0.02,
+      miningRate: 0.01,
     };
   }
 
-  handleTap() {
+  handleMining = () => {
     this.setState((prevState) => ({
-      taps: prevState.taps + 1,
-      balance: prevState.balance + 10, // Example increment
+      balance: prevState.balance + 1,
     }));
-  }
+  };
 
   render() {
     return (
-      <div className="page-container">
-        <Typography variant="h4" align="center" style={{ color: 'white' }}>Mondians TAP</Typography>
-        <Typography align="center" className="balance">Your Balance $MANST Coins</Typography>
-        <Typography align="center" className="balance">{this.state.balance}</Typography>
-        
-        <Box className="circle">
-          <img src="/images/main-icon.png" alt="Main Icon" className="icon-image" />
-        </Box>
-        
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item xs={12} sm={6}>
-            <Paper className="menuItem">
-              <Typography>Farm</Typography>
-              <Typography>{this.state.farm}</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper className="menuItem">
-              <Typography>Taps</Typography>
-              <Typography>{this.state.taps}</Typography>
-            </Paper>
-          </Grid>
-        </Grid>
-
-        <Box textAlign="center" mt={2}>
-          <img
-            src="/images/tap-button.png"
-            alt="Tap Button"
-            className="tap-image"
-            onClick={() => this.handleTap()}
-          />
-        </Box>
-
-        <Box textAlign="center" mt={2} className="luckySpinButton">
-          <Link href="/lucky-spin" legacyBehavior>
-            <a>
-              <img src="/images/spin-button.png" alt="Lucky Spin" className="tap-image" />
+      <div className={styles.pageContainer}>
+        <div className={styles.header}>
+          <Link href="/" legacyBehavior>
+            <a className={styles.buttonLink}>
+              <Button className={`${styles.button} ${styles.backButton}`}>&lt;</Button>
             </a>
           </Link>
+          <img src="/images/main-icon.png" alt="Account Avatar" className={styles.avatar} />
+          <div className={styles.accountInfo}>
+            <span className={styles.accountName}>Account_1</span>
+            <div className={styles.notifications}>
+              <img src="/images/noti.png" alt="Notifications" />
+              <span className={styles.notificationCount}>5</span>
+            </div>
+          </div>
+        </div>
+
+        <Typography variant="h5" align="center" className={styles.title}>Modians TAP</Typography>
+
+        <div className={styles.balanceContainer}>
+          <div className={styles.balanceHeader}>
+            <Typography className={styles.balanceLabel}>Balance</Typography>
+            <Typography className={styles.balanceValue}>{this.state.balance.toFixed(2)} $MANST</Typography>
+          </div>
+          <div className={styles.balanceDetails}>
+            <div className={styles.detailItem}>
+              <img src="/images/main-icon.png" alt="Coin Icon" className={styles.iconImage} />
+              <Typography>Coin</Typography>
+            </div>
+          </div>
+          <div className={styles.timeDetails}>
+            <div className={styles.detailItem}>
+              <img src="/images/time-icon.png" alt="Time Icon" className={styles.iconImage} />
+              <Typography className={styles.timeLeft}>0 min left</Typography>
+              <Typography className={styles.miningRate}>Mining: {this.state.miningRate} MANST/h</Typography>
+            </div>
+          </div>
+          <div className={styles.progressBar}>
+            <div className={styles.progress}></div>
+          </div>
+        </div>
+
+        <Box className={styles.miningContainer} onClick={this.handleMining}>
+          <img src="/images/tap-button.png" alt="Mining Image" className={styles.miningImage} />
         </Box>
-        
-        <Grid container spacing={2} className="menu">
-          <Grid item xs={3}>
-            <Paper className="menuItem">
-              <img src="/images/farming-icon.png" alt="Farming" className="icon-image" />
-              <Typography>Farming</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className="menuItem">
-              <img src="/images/friends-icon.png" alt="Friends" className="icon-image" />
-              <Typography>Friends</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className="menuItem">
-              <img src="/images/tasks-icon.png" alt="Tasks" className="icon-image" />
-              <Typography>Tasks</Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className="menuItem">
-              <img src="/images/vouchers-icon.png" alt="Vouchers" className="icon-image" />
-              <Typography>Vouchers</Typography>
-            </Paper>
-          </Grid>
-        </Grid>
+
+        <div className={styles.miningValueContainer}>
+          <div className={styles.miningValueHeader}>
+            <Typography className={styles.miningValueLabel}>Mining value</Typography>
+            <Typography className={styles.miningValue}>+{this.state.miningValue.toFixed(2)} $MANST</Typography>
+          </div>
+          <Button className={`${styles.button} ${styles.buttonPrimary}`} onClick={this.handleClaim}>Claim</Button>
+        </div>
+
+        <div className={styles.actionsContainer}>
+          <Link href="/missions" legacyBehavior>
+            <a className={styles.buttonLink}>
+              <Button className={`${styles.button} ${styles.buttonPrimary}`}>Missions</Button>
+            </a>
+          </Link>
+          <Link href="/upgrade" legacyBehavior>
+            <a className={styles.buttonLink}>
+              <Button className={`${styles.button} ${styles.buttonPrimary}`}>Upgrade</Button>
+            </a>
+          </Link>
+          <Link href="/marketplace" legacyBehavior>
+            <a className={styles.buttonLink}>
+              <Button className={`${styles.button} ${styles.buttonPrimary}`}>Marketplace</Button>
+            </a>
+          </Link>
+        </div>
       </div>
     );
   }
