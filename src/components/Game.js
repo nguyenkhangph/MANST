@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../styles/Game.module.css';
 
 export default class Game extends React.Component {
@@ -26,16 +27,19 @@ export default class Game extends React.Component {
         <div className={styles.header}>
           <Link href="/" legacyBehavior>
             <a className={styles.buttonLink}>
-              <Button className={`${styles.button} ${styles.backButton}`}>&lt;</Button>
+              <button className={`${styles.button} ${styles.backButton}`}>&lt;</button>
             </a>
           </Link>
-          <img src="/images/main-icon.png" alt="Account Avatar" className={styles.avatar} />
+        </div>
+
+        <div className={styles.accountInfoContainer}>
           <div className={styles.accountInfo}>
+            <Image src="/images/main-icon.png" alt="Account Avatar" className={styles.avatar} width={50} height={50} />
             <span className={styles.accountName}>Account_1</span>
-            <div className={styles.notifications}>
-              <img src="/images/noti.png" alt="Notifications" />
-              <span className={styles.notificationCount}>5</span>
-            </div>
+          </div>
+          <div className={styles.notifications}>
+            <Image src="/images/noti.png" alt="Notifications" width={24} height={24} />
+            <span className={styles.notificationCount}>5</span>
           </div>
         </div>
 
@@ -48,13 +52,13 @@ export default class Game extends React.Component {
           </div>
           <div className={styles.balanceDetails}>
             <div className={styles.detailItem}>
-              <img src="/images/main-icon.png" alt="Coin Icon" className={styles.iconImage} />
+              <Image src="/images/main-icon.png" alt="Coin Icon" className={styles.iconImage} width={24} height={24} />
               <Typography>Coin</Typography>
             </div>
           </div>
           <div className={styles.timeDetails}>
             <div className={styles.detailItem}>
-              <img src="/images/time-icon.png" alt="Time Icon" className={styles.iconImage} />
+              <Image src="/images/time-icon.png" alt="Time Icon" className={styles.iconImage} width={24} height={24} />
               <Typography className={styles.timeLeft}>0 min left</Typography>
               <Typography className={styles.miningRate}>Mining: {this.state.miningRate} MANST/h</Typography>
             </div>
@@ -65,7 +69,7 @@ export default class Game extends React.Component {
         </div>
 
         <Box className={styles.miningContainer} onClick={this.handleMining}>
-          <img src="/images/tap-button.png" alt="Mining Image" className={styles.miningImage} />
+          <Image src="/images/tap-button.png" alt="Mining Image" className={styles.miningImage} layout="responsive" width={400} height={300} />
         </Box>
 
         <div className={styles.miningValueContainer}>
@@ -73,23 +77,23 @@ export default class Game extends React.Component {
             <Typography className={styles.miningValueLabel}>Mining value</Typography>
             <Typography className={styles.miningValue}>+{this.state.miningValue.toFixed(2)} $MANST</Typography>
           </div>
-          <Button className={`${styles.button} ${styles.buttonPrimary}`} onClick={this.handleClaim}>Claim</Button>
+          <Button className={styles.button} onClick={this.handleClaim}>Claim</Button>
         </div>
 
         <div className={styles.actionsContainer}>
           <Link href="/missions" legacyBehavior>
             <a className={styles.buttonLink}>
-              <Button className={`${styles.button} ${styles.buttonPrimary}`}>Missions</Button>
+              <Button className={styles.button}>Missions</Button>
             </a>
           </Link>
           <Link href="/upgrade" legacyBehavior>
             <a className={styles.buttonLink}>
-              <Button className={`${styles.button} ${styles.buttonPrimary}`}>Upgrade</Button>
+              <Button className={styles.button}>Upgrade</Button>
             </a>
           </Link>
           <Link href="/marketplace" legacyBehavior>
             <a className={styles.buttonLink}>
-              <Button className={`${styles.button} ${styles.buttonPrimary}`}>Marketplace</Button>
+              <Button className={styles.button}>Marketplace</Button>
             </a>
           </Link>
         </div>

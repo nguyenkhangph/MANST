@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../styles/LuckySpin.module.css';
 
 const LuckySpin = () => {
@@ -26,11 +27,11 @@ const LuckySpin = () => {
           <button className={styles.backButton}>&lt;</button>
         </a>
       </Link>
-      <h1 className={styles.title}>Let's Spin</h1>
+      <h1 className={styles.title}>Let&apos;s Spin</h1>
       <p className={styles.subtitle}>Spin to win real prize money</p>
       <div className={styles.wheelContainer}>
         <div className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}>
-          <img src="/images/spin-icon.png" alt="Spin Wheel" className={styles.spinWheel} />
+          <Image src="/images/spin-icon.png" alt="Spin Wheel" className={styles.spinWheel} width={300} height={300} />
         </div>
         <div className={styles.indicator}></div>
       </div>
