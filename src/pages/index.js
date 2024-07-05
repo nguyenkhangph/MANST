@@ -1,6 +1,6 @@
-import App from '../components/App';
+// src/pages/index.js
+import Home from '../components/Home';
 
 export default function Index() {
-  return <App />;
+  return <Home />;
 }
-

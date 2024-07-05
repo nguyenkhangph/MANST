@@ -1,0 +1,63 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2rem;
+    color: #000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.missionList {
+    list-style: none;
+    padding: 0;
+}
+
+.missionItem {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.missionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.missionTitle {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.missionReward {
+    font-size: 1.2rem;
+    color: #CCFF00;
+    font-weight: bold;
+}
+
+.missionDescription {
+    font-size: 1rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+.missionButton {
+    background-color: #CCFF00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.missionButton:hover {
+    background-color: #b3e600;
+}

@@ -1,10 +1,12 @@
+/* src/styles/Home.module.css */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background: #f0f4f8;
+    background: #fff;
     height: 100vh;
+    color: #333;
 }
 
 .header {
@@ -30,7 +32,6 @@
 .accountName {
     font-size: 1.2rem;
     font-weight: bold;
-    color:#000;
 }
 
 .notifications {
@@ -90,32 +91,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
-    font-weight: bold;
+    margin-bottom: 10px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     background: #fff;
     color: #333;
     border: 1px solid #ddd;
-    width: 100%;
-    max-width: 250px;
-    margin-bottom: 10px;
-}
-
-.button img {
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
 }
 
 .button:hover {

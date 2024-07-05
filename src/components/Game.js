@@ -1,103 +1,52 @@
-import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import Link from 'next/link';
+// src/components/Game.js
+import React, { useState, useEffect } from 'react';
+import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Game.module.css';
 
-export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
+export default function Game() {
+  const [balance, setBalance] = useState(0.08);
+  const [tapCount, setTapCount] = useState(0);
+  const [remainingTaps, setRemainingTaps] = useState(1000);
 
-    this.state = {
-      balance: 0.08,
-      miningValue: 0.02,
-      miningRate: 0.01,
-    };
-  }
+  useEffect(() => {
+    const tapsLeft = 1000 - tapCount;
+    setRemainingTaps(tapsLeft);
+  }, [tapCount]);
 
-  handleMining = () => {
-    this.setState((prevState) => ({
-      balance: prevState.balance + 1,
-    }));
+  const handleMining = () => {
+    if (remainingTaps > 0) {
+      setBalance(balance + 0.01);
+      setTapCount(tapCount + 1);
+    }
   };
 
-  render() {
-    return (
-      <div className={styles.pageContainer}>
-        <div className={styles.header}>
-          <Link href="/" legacyBehavior>
-            <a className={styles.buttonLink}>
-              <button className={`${styles.button} ${styles.backButton}`}>&lt;</button>
-            </a>
-          </Link>
+  return (
+    <div className={styles.pageContainer}>
+
+      <div className={styles.balanceContainer}>
+        <div className={styles.balanceHeader}>
+          <Typography className={styles.balanceLabel}>Balance</Typography>
+          <Typography className={styles.balanceValue}>{balance.toFixed(2)} $MANST</Typography>
         </div>
-
-        <div className={styles.accountInfoContainer}>
-          <div className={styles.accountInfo}>
-            <Image src="/images/main-icon.png" alt="Account Avatar" className={styles.avatar} width={50} height={50} />
-            <span className={styles.accountName}>Account_1</span>
+        <div className={styles.balanceDetails}>
+          <div className={styles.detailItem}>
+            <Image src="/images/main-icon.png" alt="Coin Icon" className={styles.iconImage} width={24} height={24} />
+            <Typography>Coin</Typography>
           </div>
-          <div className={styles.notifications}>
-            <Image src="/images/noti.png" alt="Notifications" width={24} height={24} />
-            <span className={styles.notificationCount}>5</span>
-          </div>
-        </div>
-
-        <Typography variant="h5" align="center" className={styles.title}>Modians TAP</Typography>
-
-        <div className={styles.balanceContainer}>
-          <div className={styles.balanceHeader}>
-            <Typography className={styles.balanceLabel}>Balance</Typography>
-            <Typography className={styles.balanceValue}>{this.state.balance.toFixed(2)} $MANST</Typography>
-          </div>
-          <div className={styles.balanceDetails}>
-            <div className={styles.detailItem}>
-              <Image src="/images/main-icon.png" alt="Coin Icon" className={styles.iconImage} width={24} height={24} />
-              <Typography>Coin</Typography>
-            </div>
-          </div>
-          <div className={styles.timeDetails}>
-            <div className={styles.detailItem}>
-              <Image src="/images/time-icon.png" alt="Time Icon" className={styles.iconImage} width={24} height={24} />
-              <Typography className={styles.timeLeft}>0 min left</Typography>
-              <Typography className={styles.miningRate}>Mining: {this.state.miningRate} MANST/h</Typography>
-            </div>
-          </div>
-          <div className={styles.progressBar}>
-            <div className={styles.progress}></div>
-          </div>
-        </div>
-
-        <Box className={styles.miningContainer} onClick={this.handleMining}>
-          <Image src="/images/tap-button.png" alt="Mining Image" className={styles.miningImage} layout="responsive" width={400} height={300} />
-        </Box>
-
-        <div className={styles.miningValueContainer}>
-          <div className={styles.miningValueHeader}>
-            <Typography className={styles.miningValueLabel}>Mining value</Typography>
-            <Typography className={styles.miningValue}>+{this.state.miningValue.toFixed(2)} $MANST</Typography>
-          </div>
-          <Button className={styles.button} onClick={this.handleClaim}>Claim</Button>
-        </div>
-
-        <div className={styles.actionsContainer}>
-          <Link href="/missions" legacyBehavior>
-            <a className={styles.buttonLink}>
-              <Button className={styles.button}>Missions</Button>
-            </a>
-          </Link>
-          <Link href="/upgrade" legacyBehavior>
-            <a className={styles.buttonLink}>
-              <Button className={styles.button}>Upgrade</Button>
-            </a>
-          </Link>
-          <Link href="/marketplace" legacyBehavior>
-            <a className={styles.buttonLink}>
-              <Button className={styles.button}>Marketplace</Button>
-            </a>
-          </Link>
         </div>
       </div>
-    );
-  }
+      <Box className={styles.miningContainer} onClick={handleMining}>
+        <div className={styles.progressCircle}>
+          <Image src="/images/tap-button.png" alt="Mining Image" className={styles.miningImage} layout="fill" objectFit="contain" />
+          <svg className={styles.progressRing} width="300" height="300">
+            <circle className={styles.progressRingCircle} stroke="#ccff00" strokeWidth="10" fill="transparent" r="145" cx="150" cy="150" />
+            <circle className={styles.progressRingCircle} stroke="#00cc00" strokeWidth="10" fill="transparent" r="145" cx="150" cy="150" style={{ strokeDasharray: 2 * Math.PI * 145, strokeDashoffset: (2 * Math.PI * 145) * (1 - (tapCount / 1000)) }} />
+          </svg>
+        </div>
+      </Box>
+      <Typography variant="body1" align="center" className={styles.tapCount}>Taps left: {remainingTaps}</Typography>
+    </div>
+  );
 }

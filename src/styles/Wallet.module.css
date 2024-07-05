@@ -1,0 +1,128 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: #f0f4f8;
+    height: 100vh;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.backLink {
+    position: absolute;
+    left: 20px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.connectContainer {
+    margin-top: 20px;
+}
+
+.connectButton {
+    background: linear-gradient(135deg, #ccff00, #aaff00);
+    color: black;
+}
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.userAddress {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.tabs {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.tabPanel {
+    width: 100%;
+}
+
+.tokenList,
+.nftList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: center;
+}
+
+.tokenItem,
+.nftCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tokenInfo,
+.nftInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tokenName,
+.nftName {
+    font-weight: bold;
+    text-align: center;
+}
+
+.tokenAmount,
+.nftPrice {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+}
+
+.tokenValue {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.tokenChangePositive {
+    color: green;
+}
+
+.tokenChangeNegative {
+    color: red;
+}
+
+.tokenTotalValue {
+    font-weight: bold;
+}

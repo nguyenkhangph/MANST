@@ -1,71 +1,26 @@
-:root {
-    --foreground-color: var(--tg-theme-text-color, black);
-    --background-color: var(--tg-theme-bg-color, white);
-    --background-secondary: var(--tg-theme-secondary-bg-color, rgb(235, 235, 235));
-}
+/* src/styles/globals.css */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-color: var(--tg-theme-text-color, white);
-        --background-color: var(--tg-theme-bg-color, black);
-        --background-secondary: var(--tg-theme-secondary-bg-color, rgb(21, 21, 21));
-    }
-}
-
-* {
-    box-sizing: border-box;
-    padding: 0;
+body {
     margin: 0;
-}
-
-html,
-body {
-    max-width: 100vw;
-    overflow-x: hidden;
-}
-
-body {
-    background-color: #000000;
-    /* Black background */
-    color: #ffffff;
-    /* White text */
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    color: #333;
 }
 
 * {
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
 a {
-    color: inherit;
-    text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-}
-
-.fade-enter {
-    opacity: 0;
-}
-
-.fade-exit {
-    opacity: 1;
-}
-
-.fade-enter-active {
-    opacity: 1;
-}
-
-.fade-exit-active {
-    opacity: 0;
-}
-
-.fade-enter-active,
-.fade-exit-active {
-    transition: opacity ease 250ms;
+    margin: 0;
+    padding: 0;
 }

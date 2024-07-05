@@ -1,20 +1,35 @@
-import { Telegraf } from 'telegraf';
+const axios = require('axios');
+const TonWeb = require('tonweb');
 
-const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC'));
 
-bot.on('text', (ctx) => {
-  ctx.reply('Hello from your bot!');
-});
+export default async (req, res) => {
+  const { message } = req.body;
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    try {
-      await bot.handleUpdate(req.body, res);
-    } catch (error) {
-      console.error('Error handling update:', error);
-      res.status(500).send('Error handling update');
-    }
-  } else {
-    res.status(405).end();
+  const TELEGRAM_API = `https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}`;
+
+  if (message.text === '/start') {
+    await axios.post(`${TELEGRAM_API}/sendMessage`, {
+      chat_id: message.chat.id,
+      text: 'Welcome to the TON Wallet Bot. Use /connect_wallet to connect your wallet.',
+    });
   }
-}
+
+  if (message.text === '/connect_wallet') {
+    const wallet = tonweb.wallet.create();
+    const address = await wallet.getAddress();
+    const keyPair = TonWeb.utils.newKeyPair(); // Generate a new key pair
+
+    await axios.post(`${TELEGRAM_API}/sendMessage`, {
+      chat_id: message.chat.id,
+      text: `Your wallet address is: ${address.toString(true, true, true)}`,
+    });
+
+    await axios.post(`${TELEGRAM_API}/sendMessage`, {
+      chat_id: message.chat.id,
+      text: `Your private key is: ${TonWeb.utils.bytesToHex(keyPair.secretKey)}`,
+    });
+  }
+
+  res.status(200).send('ok');
+};
