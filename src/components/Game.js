@@ -1,52 +1,89 @@
-// src/components/Game.js
-import React, { useState, useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import styles from '../styles/Game.module.css';
 
-export default function Game() {
+const Game = () => {
   const [balance, setBalance] = useState(0.08);
-  const [tapCount, setTapCount] = useState(0);
-  const [remainingTaps, setRemainingTaps] = useState(1000);
+  const [tapsLeft, setTapsLeft] = useState(1000);
+  const [tapEffects, setTapEffects] = useState([]);
 
-  useEffect(() => {
-    const tapsLeft = 1000 - tapCount;
-    setRemainingTaps(tapsLeft);
-  }, [tapCount]);
-
-  const handleMining = () => {
-    if (remainingTaps > 0) {
+  const handleTap = () => {
+    if (tapsLeft > 0) {
       setBalance(balance + 0.01);
-      setTapCount(tapCount + 1);
+      setTapsLeft(tapsLeft - 1);
+
+      const newEffect = {
+        id: Date.now(),
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10,
+      };
+
+      setTapEffects([...tapEffects, newEffect]);
+      setTimeout(() => setTapEffects(tapEffects.filter(effect => effect.id !== newEffect.id)), 500);
     }
   };
 
   return (
-    <div className={styles.pageContainer}>
-
+    <div className={styles.container}>
+      <h1 className={styles.title}>Mondians TAP</h1>
+      <div className={styles.tapContainer} onClick={handleTap}>
+        <Image src="/images/tap-button1.png" alt="Tap Icon" width={300} height={300} />
+        {tapEffects.map(effect => (
+          <div
+            key={effect.id}
+            className={styles.tapEffect}
+            style={{ top: `${effect.y}%`, left: `${effect.x}%` }}
+          >
+            +1
+          </div>
+        ))}
+      </div>
       <div className={styles.balanceContainer}>
         <div className={styles.balanceHeader}>
-          <Typography className={styles.balanceLabel}>Balance</Typography>
-          <Typography className={styles.balanceValue}>{balance.toFixed(2)} $MANST</Typography>
+          <span>Balance: {balance.toFixed(2)} $MANST</span>
         </div>
-        <div className={styles.balanceDetails}>
-          <div className={styles.detailItem}>
-            <Image src="/images/main-icon.png" alt="Coin Icon" className={styles.iconImage} width={24} height={24} />
-            <Typography>Coin</Typography>
+        <div className={styles.tapsLeftContainer}>
+          <div className={styles.tapsLeft}>
+            <Image src="/images/lightning-icon.png" alt="Lightning Icon" width={40} height={40} />
+            <span>{tapsLeft}/1000</span>
+          </div>
+          <div className={styles.boost}>
+            <Image src="/images/booster-icon.png" alt="Booster Icon" width={40} height={40} />
+            <span>Boost</span>
           </div>
         </div>
       </div>
-      <Box className={styles.miningContainer} onClick={handleMining}>
-        <div className={styles.progressCircle}>
-          <Image src="/images/tap-button.png" alt="Mining Image" className={styles.miningImage} layout="fill" objectFit="contain" />
-          <svg className={styles.progressRing} width="300" height="300">
-            <circle className={styles.progressRingCircle} stroke="#ccff00" strokeWidth="10" fill="transparent" r="145" cx="150" cy="150" />
-            <circle className={styles.progressRingCircle} stroke="#00cc00" strokeWidth="10" fill="transparent" r="145" cx="150" cy="150" style={{ strokeDasharray: 2 * Math.PI * 145, strokeDashoffset: (2 * Math.PI * 145) * (1 - (tapCount / 1000)) }} />
-          </svg>
-        </div>
-      </Box>
-      <Typography variant="body1" align="center" className={styles.tapCount}>Taps left: {remainingTaps}</Typography>
+      <ul className={styles.missionList}>
+        <li className={styles.missionItem}>
+          <div className={styles.missionHeader}>
+            <Image src="/images/channel-icon.png" alt="Channel Icon" width={40} height={40} />
+            <span className={styles.missionTitle}>Join our channel</span>
+            <span className={styles.missionReward}>+10 $MANST</span>
+          </div>
+          <p className={styles.missionDescription}>Join our Telegram channel and stay updated with the latest news.</p>
+          <button className={styles.missionButton}>Join Now</button>
+        </li>
+        <li className={styles.missionItem}>
+          <div className={styles.missionHeader}>
+            <Image src="/images/friends-icon.png" alt="Invite Icon" width={40} height={40} />
+            <span className={styles.missionTitle}>Invite friends</span>
+            <span className={styles.missionReward}>+20 $MANST</span>
+          </div>
+          <p className={styles.missionDescription}>Invite your friends to join Mondians TAP and earn rewards together.</p>
+          <button className={styles.missionButton}>Invite Now</button>
+        </li>
+        <li className={styles.missionItem}>
+          <div className={styles.missionHeader}>
+            <Image src="/images/tasks-icon.png" alt="Tasks Icon" width={40} height={40} />
+            <span className={styles.missionTitle}>Complete tasks</span>
+            <span className={styles.missionReward}>+30 $MANST</span>
+          </div>
+          <p className={styles.missionDescription}>Complete daily tasks to earn more $MANST.</p>
+          <button className={styles.missionButton}>View Tasks</button>
+        </li>
+      </ul>
     </div>
   );
-}
+};
+
+export default Game;
