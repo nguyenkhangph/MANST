@@ -1,45 +1,32 @@
+// src/components/Wallet.js
 import React, { useState, useEffect } from 'react';
 import { Typography, Tabs, Tab, Avatar, Button } from '@mui/material';
-import Link from 'next/link';
+import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
 import Image from 'next/image';
 import styles from '../styles/Wallet.module.css';
 
 const Wallet = () => {
-  const [walletConnected, setWalletConnected] = useState(false);
-  const [walletBalance, setWalletBalance] = useState(1.15); // Example balance
-  const [userTokens, setUserTokens] = useState(560); // Example token count
+  const { connected, address, balance, connect } = useTonConnectUI();
   const [selectedTab, setSelectedTab] = useState(0); // 0 for Tokens, 1 for NFTs
-
-  useEffect(() => {
-    const isConnected = localStorage.getItem('walletConnected') === 'true';
-    setWalletConnected(isConnected);
-  }, []);
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
 
-  const connectWallet = () => {
-    setWalletConnected(true);
-    localStorage.setItem('walletConnected', 'true');
-    // Add wallet connection logic here
-  };
-
   return (
     <div className={styles.pageContainer}>
-
-      {!walletConnected ? (
+      {!connected ? (
         <div className={styles.connectContainer}>
-          <Button variant="contained" color="primary" onClick={connectWallet} className={styles.connectButton}>
-            Connect Wallet
-          </Button>
+          <TonConnectButton onClick={connect} className={styles.connectButton}>
+            Connect TON Wallet
+          </TonConnectButton>
         </div>
       ) : (
         <>
           <div className={styles.profileContainer}>
             <Avatar src="/images/main-icon.png" alt="User Avatar" className={styles.avatar} />
             <Typography variant="h6" className={styles.username}>Account_1</Typography>
-            <Typography variant="body2" className={styles.userAddress}>0488898fab3541addca...</Typography>
+            <Typography variant="body2" className={styles.userAddress}>{address}</Typography>
           </div>
 
           <Tabs value={selectedTab} onChange={handleTabChange} className={styles.tabs} centered>
