@@ -4,7 +4,7 @@
     align-items: center;
     padding: 20px;
     background: #f0f4f8;
-    min-height: 100vh;
+    height: 100vh;
     color: #333;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .connectButton {
-    background: linear-gradient(135deg, #ccff00, #aaff00);
+    background: linear-gradient(135deg, #ccff00, );
     color: black;
 }
 

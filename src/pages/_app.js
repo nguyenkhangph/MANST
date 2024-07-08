@@ -4,7 +4,7 @@ import '../styles/globals.css';
 import GlobalStyle from '../styles/GlobalStyle';
 import Footer from '../components/Footer';
 
-const manifestUrl = 'https://manst-e13iiu7ds-nguyenkhangphs-projects.vercel.app/manifest.json';
+const manifestUrl = 'https://manst-dq29el0km-nguyenkhangphs-projects.vercel.app/manifest.json';
 
 function MyApp({ Component, pageProps }) {
   return (
