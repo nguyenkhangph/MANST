@@ -1,17 +1,17 @@
-// src/pages/_app.js
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { useEffect } from 'react';
+import { TonConnectUIProvider, useTonConnect } from '@tonconnect/ui-react';
 import '../styles/globals.css';
 import GlobalStyle from '../styles/GlobalStyle';
-import Footer from '../components/Footer'; // Import the Footer component
+import Footer from '../components/Footer';
 
-const manifestUrl = '/manifest.json'; // Ensure this path is correct
+const manifestUrl = 'https://manst-e13iiu7ds-nguyenkhangphs-projects.vercel.app/manifest.json';
 
 function MyApp({ Component, pageProps }) {
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       <GlobalStyle />
       <Component {...pageProps} />
-      <Footer /> {/* Include Footer here */}
+      <Footer />
     </TonConnectUIProvider>
   );
 }

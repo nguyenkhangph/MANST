@@ -1,11 +1,10 @@
-/* src/styles/Wallet.module.css */
 .pageContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     background: #f0f4f8;
-    height: 100vh;
+    min-height: 100vh;
     color: #333;
 }
 

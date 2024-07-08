@@ -6,7 +6,7 @@ import Image from 'next/image';
 import styles from '../styles/Wallet.module.css';
 
 const Wallet = () => {
-  const { connected, address, balance, connect } = useTonConnectUI();
+  const { connected, account, connect } = useTonConnectUI();
   const [selectedTab, setSelectedTab] = useState(0); // 0 for Tokens, 1 for NFTs
 
   const handleTabChange = (event, newValue) => {
@@ -26,7 +26,7 @@ const Wallet = () => {
           <div className={styles.profileContainer}>
             <Avatar src="/images/main-icon.png" alt="User Avatar" className={styles.avatar} />
             <Typography variant="h6" className={styles.username}>Account_1</Typography>
-            <Typography variant="body2" className={styles.userAddress}>{address}</Typography>
+            <Typography variant="body2" className={styles.userAddress}>{account?.address}</Typography>
           </div>
 
           <Tabs value={selectedTab} onChange={handleTabChange} className={styles.tabs} centered>
